@@ -13,7 +13,7 @@ bundle agent inventory_systemd_service_units_running
 
       "i[$(_s)]"
         string => "$(with)",
-        with => nth( string_split( $(s), "\.service", inf ), 0 ),
+        with => nth( string_split( $(_s), "\.service", inf ), 0 ),
         meta => { "inventory", "attribute_name=Systemd service units running"};
 
   commands:
