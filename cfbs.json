@@ -1,0 +1,11 @@
+{
+    "description": "Inventory systemd related information",
+    "tags": [ "inventory", "systemd", "untested"],
+    "repo": "https://github.com/nickanderson/cfengine-inventory-systemd",
+    "by": "https://github.com/nickanderson",
+    "version": "1.0.0",
+    "steps": [
+        "copy ./policy/main.cf services/inventory-systemd/main.cf",
+        "json cfbs/def.json def.json"
+    ]
+}

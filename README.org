@@ -1,0 +1,10 @@
+#+title: CFEngine Inventory for Systemd
+
+* Inventory
+** Systemd service units running
+* Installing with cfbs
+
+#+begin_example
+cfbs add masterfiles
+cfbs add inventory-systemd-service-units-running
+#+end_example

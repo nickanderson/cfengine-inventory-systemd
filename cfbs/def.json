@@ -1,0 +1,6 @@
+{
+    "inputs": [ "services/inventory-systemd/main.cf" ],
+    "vars": {
+        "control_common_bundlesequence_classification": [ "inventory_systemd_service_units_running" ]
+    }
+}

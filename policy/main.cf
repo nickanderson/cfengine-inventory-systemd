@@ -1,0 +1,30 @@
+bundle agent inventory_systemd_service_units_running
+# @brief Inventory systemd service units that are running
+# @inventory Systemd service units running
+# @dependencies systemctl, awk
+{
+  vars:
+    systemd::
+      "_cache" string => "$(sys.statedir)/systemd-units-running.dat";
+
+      "_s"
+        slist => readstringlist( $(_cache), "", $(const.n), inf, inf),
+        if => fileexists( $(_cache) );
+
+      "i[$(_s)]"
+        string => "$(with)",
+        with => nth( string_split( $(s), "\.service", inf ), 0 ),
+        meta => { "inventory", "attribute_name=Systemd service units running"};
+
+  commands:
+    systemd::
+      "$(paths.systemctl) list-units --type=service --state=running | awk '/^UNIT .*/{flag=1;next}/^$/{flag=0}flag{print $1}' > $(cache)"
+        contain => in_shell;
+
+}
+
+bundle agent __main__
+{
+  methods:
+      "inventory_systemd_service_units_running";
+}
