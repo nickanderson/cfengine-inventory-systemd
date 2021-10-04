@@ -18,7 +18,7 @@ bundle agent inventory_systemd_service_units_running
 
   commands:
     systemd::
-      "$(paths.systemctl) list-units --type=service --state=running | awk '/^UNIT .*/{flag=1;next}/^$/{flag=0}flag{print $1}' > $(cache)"
+      "$(paths.systemctl) list-units --type=service --state=running | awk '/^UNIT .*/{flag=1;next}/^$/{flag=0}flag{print $1}' > $(_cache)"
         contain => in_shell;
 
 }
